@@ -13,7 +13,9 @@ $alerts = $("#alerts");
 
 $add_worker_input_company = $("#add_worker-input_company");
 $add_worker_input_job = $("#add_worker-input_job");
+$add_worker_input_agent = $("#add_worker-input_agent");
 job_option = "<option value=\"\">--Job--</option>";
+agent_option = "<option value=\"\">--Agent--</option>";
 
 $btns_delete = $(".btn-delete");
 
@@ -67,6 +69,7 @@ $add_worker_input_company.on("change", function(evt){
             data:"request=select_jobs&company_id="+value,
             success:function(data)
             {
+                console.log(data);
                 var jdata = JSON.parse(data);
                 var success = jdata.success;
                 var result = jdata.result;
@@ -85,6 +88,31 @@ $add_worker_input_company.on("change", function(evt){
 
             }
         });
+        $.ajax({
+            type:"POST",
+            url:"ajax.php",
+            data:"request=select_agents&company_id="+value,
+            success:function(data)
+            {
+                console.log(data);
+                var jdata = JSON.parse(data);
+                var success = jdata.success;
+                var result = jdata.result;
+                if(success=="true")
+                {
+                    $add_worker_input_agent.removeAttr("disabled");
+                    $add_worker_input_agent.html(result);
+                }else
+                {
+                    reset_add_worker_agent();
+                }
+
+            },
+            error:function()
+            {
+
+            }
+        });
     }else
     {
         reset_add_worker_job();
@@ -95,6 +123,12 @@ function reset_add_worker_job()
 {
     $add_worker_input_job.attr("disabled",true);
     $add_worker_input_job.html(job_option);
+}
+
+function reset_add_worker_agent()
+{
+    $add_worker_input_agent.attr("disabled",true);
+    $add_worker_input_agent.html(agent_option);
 }
 
 function add_alert(type='info', msg='')

@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<?php
+?><!DOCTYPE html>
 <html lang="en">
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -9,22 +10,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 
         <!-- bootstrap & fontawesome -->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="assets/font-awesome/4.5.0/css/font-awesome.min.css" />
+        <link rel="stylesheet" href="<?= BASE_URL;?>/assets/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="<?= BASE_URL;?>/assets/font-awesome/4.5.0/css/font-awesome.min.css" />
 
         <!-- page specific plugin styles -->
 
         <!-- text fonts -->
-        <link rel="stylesheet" href="assets/css/fonts.googleapis.com.css" />
+        <link rel="stylesheet" href="<?= BASE_URL;?>/assets/css/fonts.googleapis.com.css" />
 
         <!-- ace styles -->
-        <link rel="stylesheet" href="assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
+        <link rel="stylesheet" href="<?= BASE_URL;?>/assets/css/ace.min.css" class="ace-main-stylesheet" id="main-ace-style" />
 
         <!--[if lte IE 9]>
 <link rel="stylesheet" href="assets/css/ace-part2.min.css" class="ace-main-stylesheet" />
 <![endif]-->
-        <link rel="stylesheet" href="assets/css/ace-skins.min.css" />
-        <link rel="stylesheet" href="assets/css/ace-rtl.min.css" />
+        <link rel="stylesheet" href="<?= BASE_URL;?>/assets/css/ace-skins.min.css" />
+        <link rel="stylesheet" href="<?= BASE_URL;?>/assets/css/ace-rtl.min.css" />
+        
+        <link rel="stylesheet" href="<?= BASE_URL;?>/includes/style.css" />
 
         <!--[if lte IE 9]>
 <link rel="stylesheet" href="assets/css/ace-ie.min.css" />
@@ -33,7 +36,7 @@
         <!-- inline styles related to this page -->
 
         <!-- ace settings handler -->
-        <script src="assets/js/ace-extra.min.js"></script>
+        <script src="<?= BASE_URL;?>/assets/js/ace-extra.min.js"></script>
 
         <!-- HTML5shiv and Respond.js for IE8 to support HTML5 elements and media queries -->
 
@@ -52,221 +55,20 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div class="navbar-header pull-left">
-                    <a href="index.html" class="navbar-brand">
+                    <a href="<?= "#";?>" class="navbar-brand">
                         <small>
                             <i class="fa fa-leaf"></i>
                             Career Wing
                         </small>
                     </a>
                 </div>
-                <div class="navbar-buttons navbar-header " role="navigation">
-                    <ul class="nav ace-nav">
 
-                        <li class="light-blue dropdown-modal">
-                            <a href="index.php?page=companies">
-                                <i class="fa fa-eye fa-lg"></i> Companies
-                            </a>
-                        </li>
-                        <li class="light-blue dropdown-modal">
-                            <a href="index.php?page=workers">
-                                <i class="fa fa-eye fa-lg"></i> Workers
-                            </a>
-                        </li>
-                        <li class="light-blue dropdown-modal">
-                            <a href="index.php?page=jobs">
-                                <i class="fa fa-eye fa-lg"></i> JOBS
-                            </a>
-                        </li>
-                        <li class="light-blue dropdown-modal">
-                            <a href="index.php?page=agents">
-                                <i class="fa fa-eye fa-lg"></i> Agents
-                            </a>
-                        </li>
-
-                        <li class="grey dropdown-modal">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <i class="ace-icon fa fa-tasks"></i>
-                                Companies
-                            </a>
-
-                            <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-                                <li class="dropdown-header">
-                                    <i class="ace-icon fa fa-check"></i>
-                                    Comapnies
-                                </li>
-                                <li class="dropdown-content">
-                                    <ul class="dropdown-menu dropdown-navbar">
-                                        <li>
-                                            <a href="#">
-                                                <div class="clearfix">
-                                                    Show Companies
-                                                </div>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">
-                                                <div class="clearfix">
-                                                    <span class="pull-left">Hardware Upgrade</span>
-                                                    <span class="pull-right">35%</span>
-                                                </div>
-
-                                                <div class="progress progress-mini">
-                                                    <div style="width:35%" class="progress-bar progress-bar-danger"></div>
-                                                </div>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">
-                                                <div class="clearfix">
-                                                    <span class="pull-left">Unit Testing</span>
-                                                    <span class="pull-right">15%</span>
-                                                </div>
-
-                                                <div class="progress progress-mini">
-                                                    <div style="width:15%" class="progress-bar progress-bar-warning"></div>
-                                                </div>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#">
-                                                <div class="clearfix">
-                                                    <span class="pull-left">Bug Fixes</span>
-                                                    <span class="pull-right">90%</span>
-                                                </div>
-
-                                                <div class="progress progress-mini progress-striped active">
-                                                    <div style="width:90%" class="progress-bar progress-bar-success"></div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown-footer">
-                                    <a href="#">
-                                        See tasks with details
-                                        <i class="ace-icon fa fa-arrow-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-
-
-                        <li class="green dropdown-modal">
-                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                                <i class="ace-icon fa fa-envelope icon-animated-vertical"></i>
-                                <span class="badge badge-success">5</span>
-                            </a>
-
-                            <ul class="dropdown-menu-right dropdown-navbar dropdown-menu dropdown-caret dropdown-close">
-                                <li class="dropdown-header">
-                                    <i class="ace-icon fa fa-envelope-o"></i>
-                                    5 Messages
-                                </li>
-
-                                <li class="dropdown-content">
-                                    <ul class="dropdown-menu dropdown-navbar">
-                                        <li>
-                                            <a href="#" class="clearfix">
-                                                <img src="assets/images/avatars/avatar.png" class="msg-photo" alt="Alex's Avatar" />
-                                                <span class="msg-body">
-                                                    <span class="msg-title">
-                                                        <span class="blue">Alex:</span>
-                                                        Ciao sociis natoque penatibus et auctor ...
-                                                    </span>
-
-                                                    <span class="msg-time">
-                                                        <i class="ace-icon fa fa-clock-o"></i>
-                                                        <span>a moment ago</span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#" class="clearfix">
-                                                <img src="assets/images/avatars/avatar3.png" class="msg-photo" alt="Susan's Avatar" />
-                                                <span class="msg-body">
-                                                    <span class="msg-title">
-                                                        <span class="blue">Susan:</span>
-                                                        Vestibulum id ligula porta felis euismod ...
-                                                    </span>
-
-                                                    <span class="msg-time">
-                                                        <i class="ace-icon fa fa-clock-o"></i>
-                                                        <span>20 minutes ago</span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#" class="clearfix">
-                                                <img src="assets/images/avatars/avatar4.png" class="msg-photo" alt="Bob's Avatar" />
-                                                <span class="msg-body">
-                                                    <span class="msg-title">
-                                                        <span class="blue">Bob:</span>
-                                                        Nullam quis risus eget urna mollis ornare ...
-                                                    </span>
-
-                                                    <span class="msg-time">
-                                                        <i class="ace-icon fa fa-clock-o"></i>
-                                                        <span>3:15 pm</span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#" class="clearfix">
-                                                <img src="assets/images/avatars/avatar2.png" class="msg-photo" alt="Kate's Avatar" />
-                                                <span class="msg-body">
-                                                    <span class="msg-title">
-                                                        <span class="blue">Kate:</span>
-                                                        Ciao sociis natoque eget urna mollis ornare ...
-                                                    </span>
-
-                                                    <span class="msg-time">
-                                                        <i class="ace-icon fa fa-clock-o"></i>
-                                                        <span>1:33 pm</span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <a href="#" class="clearfix">
-                                                <img src="assets/images/avatars/avatar5.png" class="msg-photo" alt="Fred's Avatar" />
-                                                <span class="msg-body">
-                                                    <span class="msg-title">
-                                                        <span class="blue">Fred:</span>
-                                                        Vestibulum id penatibus et auctor  ...
-                                                    </span>
-
-                                                    <span class="msg-time">
-                                                        <i class="ace-icon fa fa-clock-o"></i>
-                                                        <span>10:09 am</span>
-                                                    </span>
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </li>
-
-                                <li class="dropdown-footer">
-                                    <a href="inbox.html">
-                                        See all messages
-                                        <i class="ace-icon fa fa-arrow-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
             </div><!-- /.navbar-container -->
+            <div class="pull-right">
+                <ul class="navbar-nav nav">
+                    <li><a href="logout.php">logout</a></li>
+                </ul>
+            </div>
         </div>
 
         <div class="main-container ace-save-state" id="main-container">
@@ -302,8 +104,8 @@
 </div>-->
                 <!-- /.sidebar-shortcuts -->
                 <ul class="nav nav-list">
-                    <li class="active">
-                        <a href="index.php">
+                    <li>
+                        <a href="<?= BASE_URL;?>">
                             <i class="menu-icon fa fa-tachometer"></i>
                             <span class="menu-text"> Dashboard </span>
                         </a>
@@ -323,14 +125,14 @@
                         <b class="arrow"></b>
                         <ul class="submenu">
                             <li>
-                                <a href="index.php?page=add_company">
+                                <a href="<?= BASE_URL;?>/add_company">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     Add Company
                                     <b class="arrow fa fa-plus"></b>
                                 </a>
                             </li>
                             <li>
-                                <a href="index.php?page=companies">
+                                <a href="<?= BASE_URL;?>/companies">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     Show Companies
                                     <b class="arrow fa fa-eye"></b>
@@ -351,7 +153,7 @@
 
                         <ul class="submenu">
                             <li class="">
-                                <a href="index.php?page=jobs">
+                                <a href="<?= BASE_URL;?>/jobs">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     Show Jobs
                                     <b class="fa fa-eye arrow"></b>
@@ -361,7 +163,7 @@
                             </li>
 
                             <li class="">
-                                <a href="index.php?page=add_job">
+                                <a href="<?= BASE_URL;?>/add_job">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     Add Job
                                     <b class="fa fa-plus arrow"></b>
@@ -374,7 +176,7 @@
 
                     <li class="">
                         <a href="#" class="dropdown-toggle">
-                            <i class="menu-icon fa fa-pencil-square-o"></i>
+                            <i class="menu-icon fa fa-users"></i>
                             <span class="menu-text"> Workers </span>
 
                             <b class="arrow fa fa-angle-down"></b>
@@ -382,7 +184,7 @@
                         <b class="arrow"></b>
                         <ul class="submenu">
                             <li class="">
-                                <a href="index.php?page=workers">
+                                <a href="<?= BASE_URL;?>/workers">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     Show Worker
                                     <b class="fa fa-eye arrow"></b>
@@ -391,9 +193,40 @@
                                 <b class="arrow"></b>
                             </li>
                             <li class="">
-                                <a href="index.php?page=add_worker">
+                                <a href="<?= BASE_URL;?>/add_worker">
                                     <i class="menu-icon fa fa-caret-right"></i>
                                     Add new Worker
+                                    <b class="fa fa-plus arrow"></b>
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+
+                        </ul>
+                    </li>
+
+                    <li class="">
+                        <a href="#" class="dropdown-toggle">
+                            <i class="menu-icon fa fa-user"></i>
+                            <span class="menu-text"> Agnets </span>
+
+                            <b class="arrow fa fa-angle-down"></b>
+                        </a>
+                        <b class="arrow"></b>
+                        <ul class="submenu">
+                            <li class="">
+                                <a href="<?= BASE_URL;?>/agents">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Show Agnets
+                                    <b class="fa fa-eye arrow"></b>
+                                </a>
+
+                                <b class="arrow"></b>
+                            </li>
+                            <li class="">
+                                <a href="<?= BASE_URL;?>/add_agent">
+                                    <i class="menu-icon fa fa-caret-right"></i>
+                                    Add new Agent
                                     <b class="fa fa-plus arrow"></b>
                                 </a>
 
@@ -412,22 +245,16 @@
 
             <div class="main-content">
                 <div class="main-content-inner">
-                    <div class="breadcrumbs ace-save-state" id="breadcrumbs">
-                        <ul class="breadcrumb">
-                            <li>
-                                <i class="ace-icon fa fa-home home-icon"></i>
-                                <a href="#">Home</a>
-                            </li>
-                            <li class="active">Dashboard</li>
-                        </ul><!-- /.breadcrumb -->
-
+                    <div class="breadcrumbs ace-save-state" id="">
                         <div class="nav-search" id="nav-search">
-                            <form class="form-search">
+                           <?php if(in_array($page, ["agents", "jobs", "companies", "workers"])):?>
+                            <form class="form-search" method="get" action="<?= BASE_URL."/$page";?>">
                                 <span class="input-icon">
-                                    <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                                    <input type="text" placeholder="Search ..." class="nav-search-input" name="search" value="<?= $search;?>" />
                                     <i class="ace-icon fa fa-search nav-search-icon"></i>
                                 </span>
                             </form>
+                            <?php endif;?>
                         </div><!-- /.nav-search -->
                     </div>
 

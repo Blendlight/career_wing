@@ -22,32 +22,39 @@ function get_body($page='')
     }
 }
 
-function select_options($name, $id=null)
+function select_options($name, $id=null, $where="1=1")
 {
     global $conx;
     $output = "";
-    $where = "1";
     switch($name)
     {
         case "company":
-            $query = $conx->query("SELECT company_id as id, company_name as name FROM company ORDER BY company_name ASC");
+            $query = $conx->query("SELECT company_id as id, company_name as name FROM company WHERE $where ORDER BY company_name ASC");
             break;
         case "agent":
-            $query = $conx->query("SELECT agent_id as id, agent_name as name FROM agent ORDER BY agent_name ASC");
+            $query = $conx->query("SELECT agent_id as id, agent_name as name FROM agent WHERE $where ORDER BY agent_name ASC");
             break;
         case "jobs":
-            if($id)
+            /*if($id)
             {
                 $where = "`company_id`='$id'";
-            }
-            $query = $conx->query("SELECT job_id as id, job_title as name FROM `job` WHERE $where ORDER BY job_title ASC");
+            }*/
+            $q = "SELECT job_id as id, job_title as name FROM `job` WHERE $where ORDER BY job_title ASC";
+            $query = $conx->query($q);
             break;
     }
     if($query && $query->num_rows>0)
     {
         foreach($query->fetch_all(MYSQL_ASSOC) as $row)
         {
-            $output .= "<option value='".$row["id"]."'>".$row["name"]."</option>\n";
+            $selected = "";
+            
+            if($id !== null && $id == $row["id"])
+            {
+                $selected = "selected";
+            }
+            
+            $output .= "<option  $selected value='".$row["id"]."'>".$row["name"]."</option>\n";
         }
 
     }
@@ -89,7 +96,7 @@ function create_pagination($total, $limit, $pg, $page)
     $next_class=$pg==$count?"disabled":"";
         ?>
         <li class="<?= $prev_class;?>">
-            <a href="<?= $prev_class!=""?"#":"index.php?page=$page&pg=" . ($pg-1);?>" >
+            <a href="<?= $prev_class!=""?"#": BASE_URL . "/$page/" . ($pg-1);?>" >
                 <i class="ace-icon fa fa-angle-double-left"></i>
             </a>
         </li>
@@ -97,12 +104,12 @@ function create_pagination($total, $limit, $pg, $page)
     $active = $i==$pg?"active":"";
         ?>
         <li class="<?= $active;?>">
-            <a href="index.php?page=<?= $page;?>&pg=<?= $i;?>" data-index="<?= $i;?>"><?= $i;?></a>
+            <a href="<?= BASE_URL . "/$page/" . $i;?>" data-index="<?= $i;?>"><?= $i;?></a>
         </li>
         <?php endfor;?>
 
         <li class="<?= $next_class;?>">
-            <a href="<?= $next_class!=""?"#":"index.php?page=$page&pg=" . ($pg+1);?>">
+            <a href="<?= $next_class!=""?"#": BASE_URL . "/$page/" . ($pg+1);?>">
                 <i class="ace-icon fa fa-angle-double-right"></i>
             </a>
         </li>
@@ -127,6 +134,10 @@ function delete_row($id, $table)
             break;
         case "worker":
             $query = "DELETE FROM `worker` WHERE worker_id='$id'";
+            break;
+        case "agent":
+            $query = "DELETE FROM `agent` WHERE agent_id='$id'";
+            break;
     }
     $result = $conx->query($query);
     if($result && $conx->affected_rows>0)
@@ -138,5 +149,53 @@ function delete_row($id, $table)
 
 function is_login()
 {
+    if(isset($_SESSION["userid"]))
+    {
+        return true;
+    }
+    return false;
+}
+
+function create_menu_element($title, $href='', $childs=[],$icon_1="", $single = true, $icon_2="")
+{
+    return array("title"=>$title, "href"=>$href, "icon_1"=>$icon_1, "icon_2"=>$icon_2, "single"=>$single, "childs"=>$childs);
+}
+
+function menu_is_active($menu)
+{
+    if($menu["single"])
+    {
+        if(BASE_URL == $menu["href"])
+        {
+            $active = "active";
+        }else{
+            $active = BASE_URL."/".$page==$menu["href"]?"active": "";
+        }
+    }else
+    {
+        $active = menu_is_active();
+    }
+
+    return $active;
+}
+
+function make_search_condition($search, $fields=[])
+{
+    $output = "";
+    foreach($fields as $field)
+    {
+        $output .= " `$field` LIKE '%$search%' ||";
+    }
+    return rtrim($output, "||");
+}
+
+function add_sterm_class($str)
+{
+    global $search;
+    if($search)
+    {
+        $str = preg_replace("/($search)/i", "<span class='sterm'>$1</span>", $str);
+    }
     
+    return $str;
 }

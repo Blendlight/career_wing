@@ -1,5 +1,14 @@
 <?php
-$q = "SELECT company_id as id,company_name as name  FROM `company` ORDER BY company_name ASC $query_limit";
+if($search)
+{
+    $squery = make_search_condition($search, ["company_name"]);
+    $query_limit = "";
+}else
+{
+    $squery = "1=1";
+}
+
+$q = "SELECT company_id as id,company_name as name  FROM `company` WHERE $squery ORDER BY company_name ASC $query_limit";
 
 $query = $conx->query($q);
 $companies = [];
@@ -31,16 +40,18 @@ $total = $total[0];
         foreach($companies as $company):?>
         <tr>
            <td><?= $r++;?></td>
-            <td><?= $company["name"];?></td>
+            <td><?= add_sterm_class($company["name"]);?></td>
             <td >
-                <a href="" class=""><i class="fa fa-pencil fa-lg"></i></a>
+                <a href="<?= BASE_URL."/update_company?cid=".$company["id"];?>" class=""><i class="fa fa-pencil fa-lg"></i></a>
                 <a href="#" data-table="company" data-id="<?= $company["id"];?>" class="red btn-delete"><i class="fa fa-trash fa-lg "></i></a>
             </td>
         </tr>
         <?php endforeach;?>
     </tbody>
 </table>
-<?= create_pagination($total, $limit, $pg, $page);?>
+<?php if(!$search){
+    echo create_pagination($total, $limit, $pg, $page);
+}?>
 <?php else:?>
 <h3>No companies Added</h3>
 <?php endif;?>
